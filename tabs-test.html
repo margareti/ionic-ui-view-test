@@ -1,0 +1,122 @@
+<html ng-app="ionicApp">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+  <title>Tabs Example</title>
+
+  <link href="https://code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
+  <script src="https://code.ionicframework.com/nightly/js/ionic.bundle.js"></script>
+  <style>
+    .editable-image {
+      height:200px;
+      text-align:center;
+    }
+    .main-template {
+      background: url(http://placekitten.com/2000/2000);
+      background-size: cover;
+      min-height: 100vh;
+    }
+    .buttons {
+      min-height: 50px;
+      line-height: 50px;
+    }
+    p {
+      font-size: 100px;
+      line-height: 1em;
+    }
+    .modal-wrap .pane {
+      background: rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="buttons">
+      <button ui-sref="tabs.route1">Route 1</button>
+      <button ui-sref='tabs.route2'>Route 2</button>
+      <button ui-sref='tabs.route3'>Route 3</button>
+  </div>
+
+  <ion-nav-view></ion-nav-view>
+
+
+  <script id="templates/tabs.html" type="text/ng-template">
+    <ion-view >
+      <div class="main-template">
+        <p class="center">TOTO</p>
+      </div>
+    </ion-view>
+    <div class="modal-wrap" ui-view="test"></div>
+  </script>
+
+   <script id="templates/route1.html" type="text/ng-template">
+    <ion-view>
+      <p>TOTO1</p>
+    </ion-view>
+  </script>  <script id="templates/route2.html" type="text/ng-template">
+    <ion-view>
+      <p>TOTO2</p>
+    </ion-view>
+  </script>  <script id="templates/route3.html" type="text/ng-template">
+    <ion-view>
+      <p>TOTO3</p>
+      
+    </ion-view>
+    
+  </script>
+
+
+  
+ 
+ 
+<script type="text/javascript">
+  angular.module('ionicApp', ['ionic'])
+.controller('toto', function($scope, $ionicModal) {
+  console.log("toto")
+})
+.config(function($stateProvider, $urlRouterProvider) {
+
+  $stateProvider
+    .state('tabs', {
+      url: "/tab",
+      templateUrl: "templates/tabs.html"
+    })
+    .state('tabs.route1', {
+      url: "/route1",
+      views: {
+        test: {
+          templateUrl: "templates/route1.html",
+        }
+
+      }
+    })
+    .state('tabs.route2', {
+      url: "/route2",
+      views: {
+        test: {
+          templateUrl: "templates/route2.html",
+        }
+
+      }
+    })
+    .state('tabs.route3', {
+      url: "/route3",
+      views: {
+        test: {
+          templateUrl: "templates/route3.html",
+        }
+
+      }
+    })
+    
+   $urlRouterProvider.otherwise("/tab");
+
+});
+</script>
+ 
+</body>
+
+</html>
